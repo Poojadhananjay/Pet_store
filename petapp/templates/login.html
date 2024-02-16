@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} User Registration {% endblock %}
+
+{% block login %}
+REGISTER HERE.....
+
+
+    <form method="post">
+    {% csrf_token %}
+    
+    <div class=" align-items-center">
+        <label for="username">username:</label>
+        <input name="username" type="text" class="form-control" id="username" placeholder="Enter username">
+        {{ form.username.errors }}
+      </div>
+      
+      <div class="align-items-center">
+        <label for="pwd">Password2:</label>
+        <input name='password' type="password" class="form-control" id="pwd" placeholder="enter password">
+        {{ form.password.errors }}
+      </div>
+    
+  
+     
+    <button type="submit">Login</button>
+
+{% endblock %}

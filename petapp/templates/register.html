@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %} User Registration {% endblock %}
+
+{% block login %}
+REGISTER HERE.....
+
+
+    <form method="post">
+    {% csrf_token %}
+    
+    <div class=" align-items-center">
+        <label for="username">username:</label>
+        <input name="username" type="text" class="form-control" id="username" placeholder="Enter username">
+        {{ uf.username.errors }}
+      </div>
+      <div class=" align-items-center">
+        <label for="first_name">first_name:</label>
+        <input name="first_name" type="text" class="form-control" id="first_name" placeholder="Enter first_name ">
+        {{ uf.first_name.errors }}
+      </div>
+      <div class=" align-items-center">
+        <label for="last_name">last_name:</label>
+        <input name="last_name"type="text" class="form-control" id="last_name" placeholder="Enter last_name">
+        {{ uf.last_name.errors }}
+      </div>
+      <div class=" align-items-center">
+        <label for="phone">Phone NUmber:</label>
+        <input name="phone"type="number" class="form-control" id="phone" placeholder="Enter last_name">
+        {{ cf.phone.errors }}
+      </div>
+    <div class=" align-items-center">
+        <label for="email">Email:</label>
+        <input name="email"type="email" class="form-control" id="email" placeholder="Enter email">
+        {{ uf.email.errors }}
+      </div>
+      <div class="align-items-center">
+        <label for="pwd1">Password1:</label>
+        <input name="password1" type="password" class="form-control" id="pwd1" placeholder="Enter password">
+        {{ uf.password1.errors }}
+      </div>
+      <div class="align-items-center">
+        <label for="pwd2">Password2:</label>
+        <input name='password2' type="password" class="form-control" id="pwd2" placeholder="Re-enter password">
+        {{ uf.password2.errors }}
+      </div>
+    
+    <!-- {{ form.as_p }} -->
+     
+    <button type="submit">Register</button>
+
+{% endblock %}

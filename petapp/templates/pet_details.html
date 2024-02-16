@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %} Pet Details {% endblock %}
+
+{% block login %}
+<div class="container">
+    <div class="row gx-5">
+        <aside class="col-lg-6">
+            <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                  <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{ pet.photo.url }}" />
+            </div>
+        </aside>
+        <main class="col-lg-6">
+            <div class="ps-lg-3">
+                <h4 class="title text-dark">
+                    
+                </h4>
+                <hr/>
+                <p>{{ pet.description }}</p>
+                <hr/>
+                <div class="row">
+                  <dt class="col-3">Price</dt>
+                  <dd class="col-9">Rs. {{ pet.price }}</dd>
+
+                  <dt class="col-3">Name</dt>
+                  <dd class="col-9">{{ pet.name }}</dd>
+
+                  <dt class="col-3">Breed</dt>
+                  <dd class="col-9">{{ pet.breed }}</dd>
+
+                  <dt class="col-3">Gender</dt>
+                  <dd class="col-9">{{ pet.gender }}</dd>
+                </div>
+                <hr/>
+                <div class="row m-2">
+                    <form action="{% url 'add_to_cart' pet.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="mt-5 form-group">
+                            <label for="quantity">Select Quantity</label>
+                            <select name="quantity" class="form-control" id="quantity">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+{% endblock %}

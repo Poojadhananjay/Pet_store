@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %} Order Review Page  {% endblock %}
+
+{% block login %}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        {% if not cart %}
+            <div class="align-self-center" style="color:red;font-size:20;">
+                <h1>Your cart is empty!!!</h1>
+            </div>
+        {% else %}
+            <table class="table table-bordered bg-light">
+                <thead>
+                    <tr class="text-center">
+                        <th>Photo</th>
+                        <th>Pet Name</th>
+                        <th>Quantity</th>
+                        <th>Unit price</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in cart %}
+                    <tr>
+                        <td width="30%">
+                            <a href="{{ item.pet.get_absolute_url }}">
+                                <img width="100%" height="300" src="{{ item.pet.photo.url }}">
+                            </a>
+                        </td>
+                        <td width="12%">{{ item.pet.name }}</td>
+                        <td width="15%"> {{ item.quantity }} </td>
+                       
+                        <td width="15%" class="num text-right">Rs. {{ item.pet.price }}</td>
+                        <td width="25%" class="num text-right">Rs. {{ item.item_price }}</td>
+                    </tr>
+                {% endfor %}
+                <tr class="text-right">
+                    <td></td>
+                    <td colspan="4"><strong>Total</strong></td>
+                    <td class="num text-right"><strong>Rs {{ total_price }}</strong></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="card-body">
+                <h3 class="card-title">Delivery Address:</h3>
+                <h5 class="card-title">{{ request.user.get_full_name }}</h5>
+                <h6 class="card-text"> {{ address.building_name }}</h6>
+                <h6 class="card-text"> {{ address.street }}</h6>
+                <h6 class="card-text"> {{ address.landmark }}</h6>
+                <h6 class="card-text"> {{ address.city }}</h6>
+                <h6 class="card-text"> {{ address.state }}</h6>
+                <h6 class="card-text"> {{ address.zipcode }}</h6>
+            </div>
+
+            <p class="text-right">
+                    <a href="{% url 'list_pets' %}" class="btn btn-primary">Continue shopping</a>
+                <a href="{% url 'checkout_order' address.id %}" class="btn btn-success">Checkout_order</a>
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

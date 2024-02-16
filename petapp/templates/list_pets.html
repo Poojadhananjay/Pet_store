@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Pets {% endblock %}
+
+{% block login %}
+<div class="row row-cols-3 justify-content-start justify-content-evenly">
+    {% for pet in pets %}
+    <div class="col-auto m-3">
+        <div class="card align-items-center p-2" style="width:17rem;height:25rem;">
+            <img src="{{ pet.photo.url }}" width="170" height="220" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h6 class="card-title">Name</h6>
+                <h5 class="card-subtitle mb-2 text-muted">{{ pet.name }}</h5>
+                <p class="card-text">Price: {{ pet.price }}</p>
+                <a href="{% url 'pet_details' pet.id %}" style="width: 12rem;" class="btn btn-primary">More Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <h3 class="card-title">Pets are not available at this time!</h3>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

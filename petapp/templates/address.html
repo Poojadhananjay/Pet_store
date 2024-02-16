@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block list_addresses %}
+
+<div class="container">
+    <div class="row justify-content-evenly">
+        <div class="col-10">
+            <h2>Manage Addresses</h2>
+        </div>
+        <div class="col-2">
+            <a href="{% url 'add_address' %}" class="btn btn-primary">+ Add Address</a>
+        </div>
+    </div>
+    <div class="row mt-2">
+        {% for addr in addr_list %}
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{ request.user.get_full_name }}</h4>
+                    <h6 class="card-text"> {{ addr.building_name }}</h6>
+                    <h6 class="card-text"> {{ addr.street }}</h6>
+                    <h6 class="card-text"> {{ addr.landmark }}</h6>
+                    <h6 class="card-text"> {{ addr.city }}</h6>
+                    <h6 class="card-text"> {{ addr.state }}</h6>
+                    <h6 class="card-text"> {{ addr.zipcode }}</h6>
+                </div>
+                <div class="card-footer text-center">
+                    <button style="width:200px;" class="btn btn-success mr-3" type="button" id="edit">Edit</button>
+                    <button style="width:200px;" class="btn btn-danger" type="button" id="remove">Remove</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
